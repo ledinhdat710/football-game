@@ -1,0 +1,124 @@
+<template>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <button class="menu-button">☰</button>
+      <div class="coin-box">XU : 997241</div>
+    </div>
+
+    <!-- Game Title -->
+    <div class="title">
+      <h2>HUNTERS GROUP</h2>
+      <h1>GAME 3D</h1>
+    </div>
+
+    <!-- Game Grid -->
+    <div class="game-grid">
+      <div v-for="game in games" :key="game.title" class="game-card">
+        <img :src="game.image" :alt="game.title" class="game-img" />
+        <div class="game-title">{{ game.title }}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+const games = [
+  {
+    title: "SOCCER STRIKER",
+    image: "https://example.com/soccer-striker.png",
+  },
+  {
+    title: "PENALTY SHOOT-OUT",
+    image: "https://example.com/penalty-shootout.png",
+  },
+  {
+    title: "PENALTY SHOOT-OUT STREET",
+    image: "https://example.com/penalty-street.png",
+  },
+  {
+    title: "KẺ TRỘM LIỀU LĨNH",
+    image: "https://example.com/ke-trom.png",
+  },
+];
+</script>
+
+<style scoped>
+.container {
+  background: url("https://ext.same-assets.com/1468286654/2327021610.png") center center/cover
+    no-repeat #232a34;
+  color: white;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #005f9e;
+  padding: 10px 15px;
+}
+
+.menu-button {
+  font-size: 24px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.coin-box {
+  background-color: #0074cc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.title {
+  text-align: center;
+  margin: 30px 0 20px;
+}
+
+.title h2 {
+  letter-spacing: 2px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.title h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 15px 30px;
+}
+
+.game-card {
+  background-color: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.game-img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.game-title {
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+</style>

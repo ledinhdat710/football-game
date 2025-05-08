@@ -61,7 +61,7 @@ const handleLogin = async () => {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
+  background: url("./assets/images/bg-mobile.jpg") center center/cover no-repeat #232a34;
   display: flex;
   align-items: center;
   justify-content: center;

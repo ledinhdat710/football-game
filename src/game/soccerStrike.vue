@@ -9,7 +9,7 @@
 
     <!-- Game Area -->
     <div class="game-section">
-      <img src="https://example.com/soccer-striker.png" alt="Game Icon" class="game-icon" />
+      <img :src="soccerStrikeImg" alt="Game Icon" class="game-icon" />
       <div class="game-info">
         <div class="game-title">GAME</div>
         <button class="predict-button">DỰ ĐOÁN</button>
@@ -18,9 +18,9 @@
 
     <!-- Middle Area -->
     <div class="middle-section">
-      <div class="robot-box">
+      <!-- <div class="robot-box">
         <img src="https://example.com/robot.png" alt="Robot" class="robot-img" />
-      </div>
+      </div> -->
       <div class="circle-progress">
         <div class="circle-text">0%</div>
       </div>
@@ -28,18 +28,21 @@
 
     <!-- Goalkeeper Area -->
     <div class="goalkeeper-area">
-      <img src="https://example.com/goalkeeper.png" alt="Goalkeeper" class="goalkeeper-img" />
+      <img :src="goalKeeper" alt="Goalkeeper" class="goalkeeper-img" />
     </div>
   </div>
 </template>
 
 <script setup>
+import goalKeeper from "../assets/images/goalkeeper.jpg";
+import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
+
 // No logic yet, purely UI
 </script>
 
 <style scoped>
 .container {
-  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
+  background: url("../assets/images/bg-mobile.jpg") center center/cover no-repeat #232a34;
   min-height: 100vh;
   color: white;
   font-family: sans-serif;

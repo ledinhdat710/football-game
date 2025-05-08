@@ -50,7 +50,7 @@ const games = [
 
 <style scoped>
 .container {
-  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
+  background: url("./assets/images/bg-mobile.jpg") center center/cover no-repeat #232a34;
   color: white;
   min-height: 100vh;
   padding: 0;

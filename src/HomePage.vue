@@ -16,37 +16,41 @@
     <div class="game-grid">
       <div v-for="game in games" :key="game.title" class="game-card">
         <img :src="game.image" :alt="game.title" class="game-img" />
-        <div class="game-title">{{ game.title }}</div>
+        <!-- <div class="game-title">{{ game.title }}</div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import soccerStrikeImg from "./assets/images/soccer-strike.jpg";
+import dapTrauImg from "./assets/images/dap-trau.jpg";
+import phaGonImg from "./assets/images/pha-gon.jpg";
+import dapChuotImg from "./assets/images/dap-chuot.jpg";
+
 const games = [
   {
     title: "SOCCER STRIKER",
-    image: "https://example.com/soccer-striker.png",
+    image: soccerStrikeImg,
   },
   {
-    title: "PENALTY SHOOT-OUT",
-    image: "https://example.com/penalty-shootout.png",
+    title: "Đập Trâu",
+    image: dapTrauImg,
   },
   {
-    title: "PENALTY SHOOT-OUT STREET",
-    image: "https://example.com/penalty-street.png",
+    title: "Phá cột gôn",
+    image: phaGonImg,
   },
   {
-    title: "KẺ TRỘM LIỀU LĨNH",
-    image: "https://example.com/ke-trom.png",
+    title: "Đập chuột",
+    image: dapChuotImg,
   },
 ];
 </script>
 
 <style scoped>
 .container {
-  background: url("https://ext.same-assets.com/1468286654/2327021610.png") center center/cover
-    no-repeat #232a34;
+  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
   color: white;
   min-height: 100vh;
   padding: 0;
@@ -112,7 +116,7 @@ const games = [
 
 .game-img {
   width: 100%;
-  height: 100px;
+  height: 100%;
   object-fit: cover;
 }
 

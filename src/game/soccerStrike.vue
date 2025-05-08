@@ -39,8 +39,7 @@
 
 <style scoped>
 .container {
-  background: url("https://ext.same-assets.com/1468286654/2327021610.png") center center/cover
-    no-repeat #232a34;
+  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
   min-height: 100vh;
   color: white;
   font-family: sans-serif;

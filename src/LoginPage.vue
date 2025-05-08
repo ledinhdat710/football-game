@@ -45,7 +45,7 @@ const handleLogin = async () => {
       } else {
         sessionStorage.setItem("token", token);
       }
-      localStorage.setItem("token", token);
+      // localStorage.setItem("token", token);
       router.push("/home");
     } else {
       alert(res.data?.message || "Đăng nhập thất bại");
@@ -61,8 +61,7 @@ const handleLogin = async () => {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: url("https://ext.same-assets.com/1468286654/2327021610.png") center center/cover
-    no-repeat #232a34;
+  background: url("./assets/images/background.jpg") center center/cover no-repeat #232a34;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +81,7 @@ const handleLogin = async () => {
 .main-title {
   font-size: 3rem;
   font-family: "IBM Plex Mono", monospace;
-  color: #bec4dd;
+  color: #fff;
   text-align: center;
   padding-top: 2rem;
   font-weight: bold;

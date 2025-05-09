@@ -8,7 +8,7 @@
           <input class="login-input" placeholder="Tên đăng nhập" type="text" v-model="username" />
           <input class="login-input" placeholder="Password" type="password" v-model="password" />
           <label class="remember-me">
-            <input type="checkbox" />
+            <input type="checkbox" v-model="remember" />
             <span>Ghi nhớ tài khoản</span>
           </label>
         </div>

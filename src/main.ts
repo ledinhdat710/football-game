@@ -7,7 +7,7 @@ import HomePage from './HomePage.vue'
 import GameSoccerStrike from './game/soccerStrike.vue'
 
 // 👉 Import axios nếu muốn xài global (tùy chọn)
-import api from './utils/axios'
+// import api from './utils/axios'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -22,7 +22,7 @@ const router = createRouter({
 })
 
 // 👉 Thêm guard ở đây
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
   const token = localStorage.getItem('token') || sessionStorage.getItem('token')

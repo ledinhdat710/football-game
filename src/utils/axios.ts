@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://154.26.128.102:3006/api/v1',
+  baseURL: 'https://api.penmaster.pro/api/v1',
   headers: {
     'Content-Type': 'application/json'
   }

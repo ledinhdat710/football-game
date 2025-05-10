@@ -2,7 +2,15 @@
   <div class="container">
     <!-- Header -->
     <div class="header">
-      <button class="menu-button">☰</button>
+      <Drawer v-model:visible="visible" header="Xin chào!">
+        <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
+          <i class="fas fa-home"></i> Trang chủ
+        </div>
+        <div @click="logOut" style="font-size: 24px; cursor: pointer">
+          <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+        </div>
+      </Drawer>
+      <button class="menu-button" @click="visible = true">☰</button>
       <div class="coin-box">XU : 997241</div>
     </div>
 
@@ -14,7 +22,7 @@
 
     <!-- Game Grid -->
     <div class="game-grid">
-      <div v-for="game in games" :key="game.title" class="game-card">
+      <div v-for="game in games" :key="game.title" class="game-card" @click="routeGame(game.title)">
         <img :src="game.image" :alt="game.title" class="game-img" />
         <!-- <div class="game-title">{{ game.title }}</div> -->
       </div>
@@ -27,7 +35,12 @@ import soccerStrikeImg from "./assets/images/soccer-strike.jpg";
 import dapTrauImg from "./assets/images/dap-trau.jpg";
 import phaGonImg from "./assets/images/pha-gon.jpg";
 import dapChuotImg from "./assets/images/dap-chuot.jpg";
+import { useRouter } from "vue-router";
+import Drawer from "primevue/drawer";
+import { ref } from "vue";
 
+const router = useRouter();
+const visible = ref(false);
 const games = [
   {
     title: "SOCCER STRIKER",
@@ -46,6 +59,23 @@ const games = [
     image: dapChuotImg,
   },
 ];
+
+const routeGame = (title) => {
+  if (title === "SOCCER STRIKER") {
+    router.push("/soccer-strike");
+  }
+};
+
+const goToHome = () => {
+  visible.value = false;
+  router.push("/home");
+};
+
+const logOut = () => {
+  localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
+  router.push("/login");
+};
 </script>
 
 <style scoped>

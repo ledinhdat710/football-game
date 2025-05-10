@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <!-- Header -->
-    <div class="header">
+    <!-- <div class="header">
       <button class="menu-button">☰</button>
-      <div class="coin-box">XU :</div>
-      <button class="back-button">←</button>
-    </div>
+      <div class="coin-box">XU : 997241</div>
+      <button @click="goToHome" class="back-button">←</button>
+    </div> -->
+    <Header @goToHome="goToHome"/>
 
     <!-- Game Area -->
     <div class="game-section">
@@ -36,8 +37,15 @@
 <script setup>
 import goalKeeper from "../assets/images/goalkeeper.jpg";
 import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
+import { useRouter } from "vue-router";
+import Header from "../components/Header.vue";
+
+const router = useRouter();
 
 // No logic yet, purely UI
+const goToHome = () => {
+  router.push("/home");
+};
 </script>
 
 <style scoped>
@@ -49,33 +57,6 @@ import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #005f9e;
-  width: 100%;
-  padding: 10px 15px;
-}
-
-.menu-button,
-.back-button {
-  font-size: 24px;
-  background: none;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.coin-box {
-  background-color: #0074cc;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
 }
 
 /* Game Section */

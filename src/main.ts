@@ -1,5 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import PrimeVue from 'primevue/config';
+import Aura from '@primeuix/themes/aura';
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import './style.css'
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from './LoginPage.vue'
@@ -38,6 +45,17 @@ router.beforeEach((to, _from, next) => {
   next()
 })
 
+library.add(fas);
+library.add(fab);
+library.add(far);
+dom.watch();
+
 const app = createApp(App)
 app.use(router)
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(PrimeVue, {
+    theme: {
+        preset: Aura
+    }
+});
 app.mount('#app')

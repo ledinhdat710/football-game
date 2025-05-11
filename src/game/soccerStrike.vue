@@ -18,13 +18,16 @@
         <img src="https://example.com/robot.png" alt="Robot" class="robot-img" />
       </div> -->
       <div class="circle-progress">
-        <div class="circle-text">{{ valueKick }}%</div>
+        <div class="circle-text">30%</div>
       </div>
     </div>
 
     <!-- Goalkeeper Area -->
     <div class="goalkeeper-area">
-      <img :src="goalKeeper" alt="Goalkeeper" class="goalkeeper-img" />
+      <img v-if="valueKick === 0" :src="goalKeeper" alt="Goalkeeper" class="goalkeeper-img" />
+      <img v-if="valueKick === 1" :src="left_kick" alt="Goalkeeper" class="goalkeeper-img" />
+      <img v-if="valueKick === 2" :src="center_kick" alt="Goalkeeper" class="goalkeeper-img" />
+      <img v-if="valueKick === 3" :src="right_kick" alt="Goalkeeper" class="goalkeeper-img" />
     </div>
   </div>
 </template>
@@ -33,6 +36,9 @@
 import { ref } from "vue";
 import api from "../utils/axios";
 import goalKeeper from "../assets/images/goalkeeper.jpg";
+import left_kick from "../assets/images/left_kick.jpg";
+import right_kick from "../assets/images/right_kick.jpg";
+import center_kick from "../assets/images/center_kick.jpg";
 import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
 import { useRouter } from "vue-router";
 import Header from "../components/Header.vue";

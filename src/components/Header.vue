@@ -9,7 +9,7 @@
       </div>
     </Drawer>
     <button @click="visible = true" class="menu-button">☰</button>
-    <div class="coin-box">XU : 997241</div>
+    <div class="coin-box">XU : {{ user.coin ? user.coin : 0 }}</div>
     <button @click="goToHome" class="back-button">←</button>
   </div>
 </template>
@@ -19,6 +19,7 @@ import { useRouter } from "vue-router";
 import Drawer from "primevue/drawer";
 import { ref } from "vue";
 
+const user = JSON.parse(localStorage.getItem("user"));
 const router = useRouter();
 const visible = ref(false);
 const emit = defineEmits(["goToHome"]);
@@ -28,6 +29,7 @@ const goToHome = () => {
 const logOut = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token");
+  localStorage.removeItem("user");
   router.push("/login");
 };
 </script>

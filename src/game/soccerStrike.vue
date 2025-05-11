@@ -1,19 +1,14 @@
 <template>
   <div class="container">
     <!-- Header -->
-    <!-- <div class="header">
-      <button class="menu-button">☰</button>
-      <div class="coin-box">XU : 997241</div>
-      <button @click="goToHome" class="back-button">←</button>
-    </div> -->
-    <Header @goToHome="goToHome"/>
+    <Header @goToHome="goToHome" />
 
     <!-- Game Area -->
     <div class="game-section">
       <img :src="soccerStrikeImg" alt="Game Icon" class="game-icon" />
       <div class="game-info">
         <div class="game-title">GAME</div>
-        <button class="predict-button">DỰ ĐOÁN</button>
+        <button @click="kick" class="predict-button">DỰ ĐOÁN</button>
       </div>
     </div>
 
@@ -23,7 +18,7 @@
         <img src="https://example.com/robot.png" alt="Robot" class="robot-img" />
       </div> -->
       <div class="circle-progress">
-        <div class="circle-text">0%</div>
+        <div class="circle-text">{{ valueKick }}%</div>
       </div>
     </div>
 
@@ -35,6 +30,8 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import api from "../utils/axios";
 import goalKeeper from "../assets/images/goalkeeper.jpg";
 import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
 import { useRouter } from "vue-router";
@@ -45,6 +42,13 @@ const router = useRouter();
 // No logic yet, purely UI
 const goToHome = () => {
   router.push("/home");
+};
+
+const valueKick = ref(0);
+
+const kick = async () => {
+  const res = await api.get("/admins/kick");
+  valueKick.value = res.data.value;
 };
 </script>
 

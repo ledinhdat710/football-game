@@ -45,7 +45,7 @@ const handleLogin = async () => {
       } else {
         sessionStorage.setItem("token", token);
       }
-      // localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(res.data?.user));
       router.push("/home");
     } else {
       alert(res.data?.message || "Đăng nhập thất bại");

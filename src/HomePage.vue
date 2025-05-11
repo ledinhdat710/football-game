@@ -11,7 +11,7 @@
         </div>
       </Drawer>
       <button class="menu-button" @click="visible = true">☰</button>
-      <div class="coin-box">XU : 997241</div>
+      <div class="coin-box">XU : {{ user.coin ? user.coin : 0 }}</div>
     </div>
 
     <!-- Game Title -->
@@ -60,6 +60,9 @@ const games = [
   },
 ];
 
+const user = JSON.parse(localStorage.getItem("user"));
+// console.log("user", user);
+
 const routeGame = (title) => {
   if (title === "SOCCER STRIKER") {
     router.push("/soccer-strike");
@@ -74,6 +77,7 @@ const goToHome = () => {
 const logOut = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token");
+  localStorage.removeItem("user");
   router.push("/login");
 };
 </script>

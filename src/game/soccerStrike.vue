@@ -44,7 +44,7 @@
           đoán đơn tầng của AI. Mỗi cú sút là một lần tái lập biến số, không cho phép bất kỳ lối mòn
           hành vi nào bị khai thác."
         </div>
-        <button class="start-button" @click="startGame">⚡ BẮT ĐẦU</button>
+        <button class="start-button" @click="startGame(1)">⚡ BẮT ĐẦU</button>
       </div>
 
       <!-- Chiến thuật 2 -->
@@ -55,7 +55,7 @@
           lượt, phá vỡ toàn bộ chuỗi hồi quy mà thống Deep Learning thủ môn cố gắng học theo. Mỗi
           lần sút, AI như lạc vào ma trận xác suất."
         </div>
-        <button class="start-button" @click="startGame">⚡ BẮT ĐẦU</button>
+        <button class="start-button" @click="startGame(2)">⚡ BẮT ĐẦU</button>
       </div>
     </div>
   </div>
@@ -80,8 +80,14 @@ const logOut = () => {
   localStorage.removeItem("user");
   router.push("/login");
 };
-const startGame = () => {
+const startGame = (value) => {
   router.push("/game-strike");
+  router.push({
+    path: "/game-strike",
+    query: {
+      type: value,
+    },
+  });
 };
 
 const goToHome = () => {

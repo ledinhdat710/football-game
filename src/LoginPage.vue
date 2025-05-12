@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <!-- <img src="" alt="Penmaster" class="logo" /> -->
-      <i class="fa-solid fa-bowling-ball"></i>
+      <img :src="logoImg" alt="Penmaster" class="logo" />
+
       <h1 class="title">PENMASTER</h1>
       <p class="subtitle">Chơi game trí tuệ!</p>
 
@@ -34,6 +34,7 @@
 import { ref } from "vue";
 import api from "./utils/axios";
 import { useRouter } from "vue-router";
+import logoImg from "./assets/images/penmaster-logo.jpg";
 
 const username = ref();
 const password = ref();

@@ -5,7 +5,7 @@
       <div @click="handleHome">
         <i style="cursor: pointer" class="fas fa-bars menu-icon"></i>
       </div>
-         <Drawer v-model:visible="visible" header="Xin chào!">
+      <Drawer v-model:visible="visible" header="Xin chào!">
         <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
           <i class="fas fa-home"></i> Trang chủ
         </div>
@@ -23,7 +23,7 @@
           ></i>
           <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
         </div>
-        <div @click="logOut" style="font-size: 24px; cursor: pointer;">
+        <div @click="logOut" style="font-size: 24px; cursor: pointer">
           <i class="fas fa-sign-out-alt"></i> Đăng Xuất
         </div>
       </Drawer>
@@ -74,10 +74,11 @@ import left_kick from "../assets/images/left_kick.jpg";
 import right_kick from "../assets/images/right_kick.jpg";
 import center_kick from "../assets/images/center_kick.jpg";
 import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import Drawer from "primevue/drawer";
 
 const router = useRouter();
+const route = useRoute();
 
 const valueKick = ref(0);
 
@@ -101,7 +102,7 @@ const logOut = () => {
 };
 
 const kick = async () => {
-  const res = await api.get("/admins/kick");
+  const res = await api.get(`/admins/kick/${route.query.type}`);
   valueKick.value = res.data.value;
 };
 </script>

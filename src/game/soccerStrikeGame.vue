@@ -161,7 +161,7 @@ const kick = async () => {
 
 .shoot-button {
   position: absolute;
-  bottom: 20%;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   background: #00aaff;

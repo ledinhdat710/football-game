@@ -1,158 +1,185 @@
 <template>
-  <div class="container">
-    <!-- Header -->
-    <Header @goToHome="goToHome" />
-
-    <!-- Game Area -->
-    <div class="game-section">
-      <img :src="soccerStrikeImg" alt="Game Icon" class="game-icon" />
-      <div class="game-info">
-        <div class="game-title">GAME</div>
-        <button @click="kick" class="predict-button">DỰ ĐOÁN</button>
+  <div class="menu-container">
+    <header class="menu-header">
+      <div @click="handleHome">
+        <i style="cursor: pointer" class="fas fa-bars menu-icon"></i>
       </div>
-    </div>
 
-    <!-- Middle Area -->
-    <div class="middle-section">
-      <!-- <div class="robot-box">
-        <img src="https://example.com/robot.png" alt="Robot" class="robot-img" />
-      </div> -->
-      <div class="circle-progress">
-        <div class="circle-text">30%</div>
+      <Drawer v-model:visible="visible" header="Xin chào!">
+        <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
+          <i class="fas fa-home"></i> Trang chủ
+        </div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Giới thiệu</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Cộng đồng</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Tài liệu BCR</div>
+        <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
+          <i
+            style="font-size: 24px; cursor: pointer; margin-right: 10px"
+            class="fa-brands fa-facebook"
+          ></i>
+          <i
+            style="font-size: 24px; cursor: pointer; margin-right: 10px"
+            class="fa-brands fa-telegram"
+          ></i>
+          <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
+        </div>
+        <div @click="logOut" style="font-size: 24px; cursor: pointer">
+          <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+        </div>
+      </Drawer>
+      <div class="logo">PENMASTER</div>
+      <div class="coin">
+        <span>{{ user.coin ? user.coin : 0 }}</span>
+        <i class="fa-solid fa-coins"></i>
       </div>
-    </div>
+    </header>
+    <div class="strategy-page">
+      <!-- Header -->
 
-    <!-- Goalkeeper Area -->
-    <div class="goalkeeper-area">
-      <img v-if="valueKick === 0" :src="goalKeeper" alt="Goalkeeper" class="goalkeeper-img" />
-      <img v-if="valueKick === 1" :src="left_kick" alt="Goalkeeper" class="goalkeeper-img" />
-      <img v-if="valueKick === 2" :src="center_kick" alt="Goalkeeper" class="goalkeeper-img" />
-      <img v-if="valueKick === 3" :src="right_kick" alt="Goalkeeper" class="goalkeeper-img" />
+      <!-- Chiến thuật 1 -->
+      <div class="strategy-box">
+        <div class="strategy-title">P.P KHÔNG TRÙNG HƯỚNG</div>
+        <div class="strategy-description">
+          "Ứng dụng nguyên lý Markov Chain Breaker, chiến thuật này triệt tiêu hoàn toàn hành vi dự
+          đoán đơn tầng của AI. Mỗi cú sút là một lần tái lập biến số, không cho phép bất kỳ lối mòn
+          hành vi nào bị khai thác."
+        </div>
+        <button class="start-button" @click="startGame">⚡ BẮT ĐẦU</button>
+      </div>
+
+      <!-- Chiến thuật 2 -->
+      <div class="strategy-box">
+        <div class="strategy-title">P.P KHÔNG LẶP 4 SHOT</div>
+        <div class="strategy-description">
+          "Chiến thuật Multi-layer Randomization – thiết lập hàng rào biến thiên tới thời điểm 3-4
+          lượt, phá vỡ toàn bộ chuỗi hồi quy mà thống Deep Learning thủ môn cố gắng học theo. Mỗi
+          lần sút, AI như lạc vào ma trận xác suất."
+        </div>
+        <button class="start-button" @click="startGame">⚡ BẮT ĐẦU</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import api from "../utils/axios";
-import goalKeeper from "../assets/images/goalkeeper.jpg";
-import left_kick from "../assets/images/left_kick.jpg";
-import right_kick from "../assets/images/right_kick.jpg";
-import center_kick from "../assets/images/center_kick.jpg";
-import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
-import { useRouter } from "vue-router";
 import Header from "../components/Header.vue";
+import { useRouter } from "vue-router";
+import Drawer from "primevue/drawer";
+import { ref } from "vue";
 
 const router = useRouter();
+const visible = ref();
+const user = JSON.parse(localStorage.getItem("user")) || {};
 
-// No logic yet, purely UI
-const goToHome = () => {
-  router.push("/home");
+const handleHome = () => {
+  visible.value = true;
+};
+const logOut = () => {
+  localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
+  localStorage.removeItem("user");
+  router.push("/login");
+};
+const startGame = () => {
+  router.push("/game-strike");
 };
 
-const valueKick = ref(0);
-
-const kick = async () => {
-  const res = await api.get("/admins/kick");
-  valueKick.value = res.data.value;
+const goToHome = () => {
+  router.push("/home");
 };
 </script>
 
 <style scoped>
-.container {
+.menu-container {
   background: url("../assets/images/bg-mobile.jpg") center center/cover no-repeat #232a34;
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
-  color: white;
   font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
-
-/* Game Section */
-.game-section {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.game-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.game-info {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.game-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.predict-button {
-  background: #2fa4ff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 14px;
+.strategy-page {
+  min-height: 100vh;
+  font-family: sans-serif;
   color: white;
-  cursor: pointer;
+  padding: 16px;
+}
+
+.strategy-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.strategy-title {
+  background: #e6003f;
+  color: white;
   font-weight: bold;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 12px;
 }
 
-/* Middle Section */
-.middle-section {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin: 20px 0;
-}
-
-.robot-box {
-  border: 2px solid yellow;
-  padding: 5px;
+.strategy-description {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 12px;
   border-radius: 8px;
+  box-shadow: 0 0 10px #00f0ff;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 
-.robot-img {
-  width: 80px;
-  height: auto;
+.start-button {
+  background: #00e676;
+  color: black;
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
 }
 
-.circle-progress {
+.start-button:hover {
+  background: #00c853;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.8);
+}
+
+/* HEADER */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  color: white;
+  font-weight: bold;
   position: relative;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: conic-gradient(#00ff00 0%, #333 0%);
+  z-index: 2;
+}
+
+.menu-icon {
+  font-size: 22px;
+}
+
+.logo {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.coin {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.circle-text {
-  position: absolute;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* Goalkeeper Area */
-.goalkeeper-area {
-  width: 100%;
-  position: relative;
-  margin-top: 20px;
-}
-
-.goalkeeper-img {
-  width: 100%;
-  object-fit: cover;
+  gap: 5px;
 }
 </style>

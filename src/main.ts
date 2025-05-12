@@ -12,6 +12,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from './LoginPage.vue'
 import HomePage from './HomePage.vue'
 import GameSoccerStrike from './game/soccerStrike.vue'
+import GameSoccerStrikePlay from './game/soccerStrikeGame.vue'
 
 // 👉 Import axios nếu muốn xài global (tùy chọn)
 // import api from './utils/axios'
@@ -21,6 +22,7 @@ const routes = [
   { path: '/login', component: LoginPage },
   { path: '/home', component: HomePage },
   { path: '/soccer-strike', component: GameSoccerStrike },
+  { path: '/game-strike', component: GameSoccerStrikePlay },
 ]
 
 const router = createRouter({

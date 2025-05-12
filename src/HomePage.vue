@@ -1,30 +1,55 @@
 <template>
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
+  <div class="menu-container">
+    <!-- HEADER -->
+    <header class="menu-header">
+      <div @click="handleHome">
+        <i style="cursor: pointer" class="fas fa-bars menu-icon"></i>
+      </div>
+
       <Drawer v-model:visible="visible" header="Xin chào!">
         <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
           <i class="fas fa-home"></i> Trang chủ
         </div>
-        <div @click="logOut" style="font-size: 24px; cursor: pointer">
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Giới thiệu</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Cộng đồng</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Tài liệu BCR</div>
+        <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
+          <i
+            style="font-size: 24px; cursor: pointer; margin-right: 10px"
+            class="fa-brands fa-facebook"
+          ></i>
+          <i
+            style="font-size: 24px; cursor: pointer; margin-right: 10px"
+            class="fa-brands fa-telegram"
+          ></i>
+          <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
+        </div>
+        <div @click="logOut" style="font-size: 24px; cursor: pointer;">
           <i class="fas fa-sign-out-alt"></i> Đăng Xuất
         </div>
       </Drawer>
-      <button class="menu-button" @click="visible = true">☰</button>
-      <div class="coin-box">XU : {{ user.coin ? user.coin : 0 }}</div>
-    </div>
+      <div class="logo">PENMASTER</div>
+      <div class="coin">
+        <span>{{ user.coin ? user.coin : 0 }}</span>
+        <i class="fa-solid fa-coins"></i>
+      </div>
+    </header>
 
-    <!-- Game Title -->
-    <div class="title">
-      <h2>HUNTERS GROUP</h2>
-      <h1>GAME 3D</h1>
-    </div>
+    <!-- LỚP PHỦ TRẮNG MỜ -->
+    <div class="white-overlay"></div>
 
-    <!-- Game Grid -->
+    <!-- GAME GRID -->
     <div class="game-grid">
-      <div v-for="game in games" :key="game.title" class="game-card" @click="routeGame(game.title)">
-        <img :src="game.image" :alt="game.title" class="game-img" />
-        <!-- <div class="game-title">{{ game.title }}</div> -->
+      <div
+        v-for="(game, index) in games"
+        :key="index"
+        class="game-card"
+        @click="routeGame(game.title)"
+      >
+        <img :src="game.image" :alt="game.title" class="game-image" />
+        <p class="title">{{ game.title }}</p>
+        <p class="star">{{ game.stars }}<i class="fas fa-star" style="color: gold"></i></p>
+        <p class="soon">COMING SOON</p>
       </div>
     </div>
   </div>
@@ -35,44 +60,36 @@ import soccerStrikeImg from "./assets/images/soccer-strike.jpg";
 import dapTrauImg from "./assets/images/dap-trau.jpg";
 import phaGonImg from "./assets/images/pha-gon.jpg";
 import dapChuotImg from "./assets/images/dap-chuot.jpg";
-import { useRouter } from "vue-router";
 import Drawer from "primevue/drawer";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 
+const visible = ref();
 const router = useRouter();
-const visible = ref(false);
 const games = [
   {
     title: "SOCCER STRIKER",
     image: soccerStrikeImg,
+    stars: 5,
   },
   {
     title: "Đập Trâu",
     image: dapTrauImg,
+    stars: 0,
   },
   {
     title: "Phá cột gôn",
     image: phaGonImg,
+    stars: 0,
   },
   {
     title: "Đập chuột",
     image: dapChuotImg,
+    stars: 0,
   },
 ];
 
-const user = JSON.parse(localStorage.getItem("user"));
-// console.log("user", user);
-
-const routeGame = (title) => {
-  if (title === "SOCCER STRIKER") {
-    router.push("/soccer-strike");
-  }
-};
-
-const goToHome = () => {
-  visible.value = false;
-  router.push("/home");
-};
+const user = JSON.parse(localStorage.getItem("user")) || {};
 
 const logOut = () => {
   localStorage.removeItem("token");
@@ -80,83 +97,122 @@ const logOut = () => {
   localStorage.removeItem("user");
   router.push("/login");
 };
+
+const goToHome = () => {
+  router.push("/home");
+};
+
+const handleHome = () => {
+  visible.value = true;
+};
+
+const routeGame = (title) => {
+  if (title === "SOCCER STRIKER") {
+    router.push("/soccer-strike");
+  }
+};
 </script>
 
 <style scoped>
-.container {
+.menu-container {
   background: url("./assets/images/bg-mobile.jpg") center center/cover no-repeat #232a34;
-  color: white;
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
-  padding: 0;
-  margin: 0;
   font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
-.header {
+/* HEADER */
+.menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #005f9e;
-  padding: 10px 15px;
-}
-
-.menu-button {
-  font-size: 24px;
-  background: none;
+  padding: 15px 10px;
   color: white;
-  border: none;
-  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
 }
 
-.coin-box {
-  background-color: #0074cc;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
+.menu-icon {
+  font-size: 22px;
+}
+
+.logo {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* LỚP PHỦ */
+.white-overlay {
+  position: absolute;
+  top: 60px; /* chiều cao header */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.3); /* Mờ hơn */
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+/* GRID */
+.game-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 10px;
+}
+
+/* GAME CARD */
+.game-card {
+  backdrop-filter: blur(6px);
+  padding: 14px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.game-card:hover {
+  transform: scale(1.02);
+}
+
+/* GAME IMAGE TO HƠN */
+.game-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .title {
-  text-align: center;
-  margin: 30px 0 20px;
-}
-
-.title h2 {
-  letter-spacing: 2px;
-  font-size: 16px;
+  margin-top: 12px;
   font-weight: bold;
+  font-size: 15px;
 }
 
-.title h1 {
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 15px 30px;
-}
-
-.game-card {
-  background-color: #222;
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.game-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.game-title {
-  padding: 8px 0;
+.star {
+  margin: 6px 0;
   font-size: 14px;
-  font-weight: bold;
+  color: #333;
+}
+
+.soon {
+  background: red;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 6px;
 }
 </style>

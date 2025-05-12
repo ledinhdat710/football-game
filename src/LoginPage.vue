@@ -25,7 +25,7 @@
 
       <p class="hint-text">Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé!</p>
 
-      <p class="version">Ver 1.2<br />Powered by 6Ggaming</p>
+      <p class="version">Ver 1.2<br />Powered by 68Ggaming</p>
     </div>
   </div>
 </template>
@@ -120,6 +120,7 @@ input {
 .hint-text {
   font-size: 12px;
   margin-top: 15px;
+  font-style: italic;
 }
 
 .version {

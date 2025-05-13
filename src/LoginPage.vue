@@ -4,7 +4,7 @@
     <div class="login-box">
       <img :src="logoImg" alt="Penmaster" class="logo" />
 
-      <h1 class="title">PENMASTER</h1>
+      <div class="title">PENMASTER</div>
       <p class="subtitle">Chơi game trí tuệ!</p>
 
       <div class="input-group">
@@ -26,7 +26,7 @@
 
       <p class="hint-text">Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé!</p>
 
-      <p class="version">Ver 1.2<br />Powered by 68Ggaming</p>
+      <p class="version">Ver 1.2<br />Powered by 68Gaming</p>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@
 import { ref } from "vue";
 import api from "./utils/axios";
 import { useRouter } from "vue-router";
-import logoImg from "./assets/images/penmaster-logo.jpg";
+import logoImg from "./assets/images/penmaster-logo.png";
 import logoCongDong from "./assets/images/logo-congdong.jpg";
 
 const username = ref();
@@ -75,11 +75,10 @@ const handleLogin = async () => {
 }
 
 .logo-congdong {
-  width: 100px;
-  margin-bottom: 20px;
+  width: 120px;
   display: block;
   position: absolute;
-  top: 40px;
+  top: 82px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -89,7 +88,7 @@ const handleLogin = async () => {
 .login-box {
   margin-top: 50px;
   background-color: rgba(0, 41, 77, 0.85);
-  padding: 30px;
+  padding: 20px 30px 30px 30px;
   border-radius: 10px;
   text-align: center;
   color: white;
@@ -98,9 +97,7 @@ const handleLogin = async () => {
 }
 
 .logo {
-  width: 50px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  width: 120px;
 }
 
 .title {
@@ -161,5 +158,60 @@ input {
 
 .login-button:hover {
   background-color: #1b8edc;
+}
+
+@media (max-width: 400px) {
+  .logo-congdong {
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+}
+
+@media (min-width: 768px) {
+  .logo-congdong {
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-congdong {
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 376px) {
+  .logo-congdong {
+    width: 80px;
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 5px;
+  }
 }
 </style>

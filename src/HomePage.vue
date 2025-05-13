@@ -24,7 +24,7 @@
           ></i>
           <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
         </div>
-        <div @click="logOut" style="font-size: 24px; cursor: pointer;">
+        <div @click="logOut" style="font-size: 24px; cursor: pointer">
           <i class="fas fa-sign-out-alt"></i> Đăng Xuất
         </div>
       </Drawer>
@@ -47,9 +47,9 @@
         @click="routeGame(game.title)"
       >
         <img :src="game.image" :alt="game.title" class="game-image" />
-        <p class="title">{{ game.title }}</p>
-        <p class="star">{{ game.stars }}<i class="fas fa-star" style="color: gold"></i></p>
-        <p class="soon">COMING SOON</p>
+        <div class="title">{{ game.title }}</div>
+        <p class="star">{{ game.stars }} <i class="fa-solid fa-coins" style="color: gold"></i></p>
+        <p class="soon">{{ game.status }}</p>
       </div>
     </div>
   </div>
@@ -60,6 +60,8 @@ import soccerStrikeImg from "./assets/images/soccer-strike.jpg";
 import dapTrauImg from "./assets/images/dap-trau.jpg";
 import phaGonImg from "./assets/images/pha-gon.jpg";
 import dapChuotImg from "./assets/images/dap-chuot.jpg";
+import keTromImg from "./assets/images/ke-trom-lieu-linh.jpg";
+import bomxImg from "./assets/images/bomx.jpg";
 import Drawer from "primevue/drawer";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
@@ -68,24 +70,40 @@ const visible = ref();
 const router = useRouter();
 const games = [
   {
-    title: "SOCCER STRIKER",
+    title: "Tiền đạo Đá bóng",
     image: soccerStrikeImg,
-    stars: 5,
+    stars: 2,
+    status: "SỬ DỤNG",
   },
   {
     title: "Đập Trâu",
     image: dapTrauImg,
     stars: 0,
+    status: "COMING SOON",
   },
   {
     title: "Phá cột gôn",
     image: phaGonImg,
     stars: 0,
+    status: "COMING SOON",
   },
   {
     title: "Đập chuột",
     image: dapChuotImg,
     stars: 0,
+    status: "COMING SOON",
+  },
+  {
+    title: "Kẻ trộm liều lĩnh",
+    image: keTromImg,
+    stars: 0,
+    status: "COMING SOON",
+  },
+  {
+    title: "Bơm X",
+    image: bomxImg,
+    stars: 0,
+    status: "COMING SOON",
   },
 ];
 
@@ -107,7 +125,7 @@ const handleHome = () => {
 };
 
 const routeGame = (title) => {
-  if (title === "SOCCER STRIKER") {
+  if (title === "Tiền đạo Đá bóng") {
     router.push("/soccer-strike");
   }
 };
@@ -181,10 +199,14 @@ const routeGame = (title) => {
   border-radius: 14px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.3s;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 .game-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.65);
 }
 
 /* GAME IMAGE TO HƠN */
@@ -196,13 +218,13 @@ const routeGame = (title) => {
 }
 
 .title {
-  margin-top: 12px;
+  margin-top: 8px;
   font-weight: bold;
   font-size: 15px;
 }
 
 .star {
-  margin: 6px 0;
+  margin: 2px 0;
   font-size: 14px;
   color: #333;
 }
@@ -214,6 +236,6 @@ const routeGame = (title) => {
   border-radius: 20px;
   font-size: 12px;
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 </style>

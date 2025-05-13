@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <img :src="logoCongDong" class="logo-congdong" />
     <div class="login-box">
       <img :src="logoImg" alt="Penmaster" class="logo" />
 
@@ -35,6 +36,7 @@ import { ref } from "vue";
 import api from "./utils/axios";
 import { useRouter } from "vue-router";
 import logoImg from "./assets/images/penmaster-logo.jpg";
+import logoCongDong from "./assets/images/logo-congdong.jpg";
 
 const username = ref();
 const password = ref();
@@ -72,7 +74,20 @@ const handleLogin = async () => {
   align-items: center;
 }
 
+.logo-congdong {
+  width: 100px;
+  margin-bottom: 20px;
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 5px;
+}
+
 .login-box {
+  margin-top: 50px;
   background-color: rgba(0, 41, 77, 0.85);
   padding: 30px;
   border-radius: 10px;
@@ -85,6 +100,7 @@ const handleLogin = async () => {
 .logo {
   width: 50px;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .title {

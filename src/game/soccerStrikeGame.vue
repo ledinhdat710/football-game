@@ -37,19 +37,33 @@
     <!-- Game Section -->
     <!-- Game Title Section -->
     <div class="game-title-section">
-      <h2 class="title">P.P KHÔNG TRÙNG HƯỚNG</h2>
+      <h2 class="title">
+        {{ getNameGame(type) }}
+      </h2>
       <div class="title-bar"></div>
 
-      <div class="info-box">
+      <div v-if="Number(soVon) >= 200 && Number(soVon) < 500" class="info-box">
         <div class="info-text">
-          <div>Vốn tối thiểu: 300</div>
-          <div>Cấp độ: Basic</div>
-          <div>Sút mồi: 10 lượt -5k</div>
-          <div>Chốt lãi khuyến khích: Bậc 6</div>
-          <div>Sút khai thác: 2 lượt 25k</div>
-          <div>Chốt lãi khuyến khích: Bậc 4</div>
-          <div>Sút quyết định: 50k</div>
-          <div>Chốt lãi khuyến khích: Bậc 3</div>
+          <div>Vốn tối thiểu: 200</div>
+          <div>Cấp độ: Amateur</div>
+          <div>Sút mồi (10 lượt/5k) - Chốt lãi level 8</div>
+          <div>Sút khai thác (3 lượt/50k) - Chốt lãi khuyến khích (Bậc 5)</div>
+        </div>
+      </div>
+      <div v-else-if="Number(soVon) >= 500 && Number(soVon) < 1000" class="info-box">
+        <div class="info-text">
+          <div>Vốn tối thiểu: 500</div>
+          <div>Cấp độ: Amateur</div>
+          <div>Sút mồi (10 lượt/10k) - Chốt lãi level 8</div>
+          <div>Sút khai thác (4 lượt/100k) - Chốt lãi khuyến khích (Bậc 5)</div>
+        </div>
+      </div>
+      <div v-else-if="Number(soVon) >= 1000" class="info-box">
+        <div class="info-text">
+          <div>Vốn tối thiểu: 1000</div>
+          <div>Cấp độ: Amateur</div>
+          <div>Sút mồi (10 lượt/20k) - Chốt lãi level 8</div>
+          <div>Sút khai thác (4 200k)- Chốt lãi khuyến khích (Bậc 5)</div>
         </div>
       </div>
     </div>
@@ -63,11 +77,12 @@
     </div>
 
     <button @click="kick" class="shoot-button">SÚT</button>
+    <Toast />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import api from "../utils/axios";
 import goalKeeper from "../assets/images/goalkeeper.jpg";
 import left_kick from "../assets/images/left_kick.jpg";
@@ -76,10 +91,11 @@ import center_kick from "../assets/images/center_kick.jpg";
 import soccerStrikeImg from "../assets/images/soccer-strike.jpg";
 import { useRouter, useRoute } from "vue-router";
 import Drawer from "primevue/drawer";
+import { useToast } from "primevue/usetoast";
 
 const router = useRouter();
 const route = useRoute();
-
+const toast = useToast();
 const valueKick = ref(0);
 
 const visible = ref();
@@ -87,11 +103,29 @@ const visible = ref();
 const handleHome = () => {
   visible.value = true;
 };
+const type = ref("");
+const soVon = ref();
+onMounted(async () => {
+  type.value = route.query.type;
+  soVon.value = route.query.von;
+});
 
 const user = JSON.parse(localStorage.getItem("user")) || {};
 
 const goToHome = () => {
   router.push("/home");
+};
+
+const getNameGame = (value) => {
+  const names = {
+    1: "Không trùng hướng liên tiếp",
+    2: "Không lặp trong 3–4 cú gần nhất",
+    3: "Fake pattern rồi đảo ngược",
+    4: "Random có kiểm soát",
+    5: "Chơi kiểu ẩn seed",
+  };
+
+  return names[Number(value)] || "Không xác định";
 };
 
 const logOut = () => {
@@ -103,6 +137,14 @@ const logOut = () => {
 
 const kick = async () => {
   const res = await api.get(`/admins/kick/${route.query.type}`);
+  if (!res) {
+    toast.add({
+      severity: "error",
+      summary: "Lỗi",
+      detail: "Lỗi hệ thống, vui lòng thử lại.",
+      life: 3000,
+    });
+  }
   valueKick.value = res.data.value;
 };
 </script>
@@ -186,6 +228,7 @@ const kick = async () => {
   width: 100%;
   padding: 15px;
   font-weight: bold;
+  background-color: #232a34;
 }
 
 .menu-icon {

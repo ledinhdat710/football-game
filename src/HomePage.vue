@@ -134,6 +134,7 @@ const routeGame = (title) => {
   font-weight: bold;
   position: relative;
   z-index: 2;
+  background-color: #232a34;
 }
 
 .menu-icon {

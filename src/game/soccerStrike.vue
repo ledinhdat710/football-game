@@ -38,7 +38,7 @@
 
       <!-- Chiến thuật 1 -->
       <div class="strategy-box">
-        <div class="strategy-title">P.P KHÔNG TRÙNG HƯỚNG</div>
+        <div class="strategy-title">Không trùng hướng liên tiếp</div>
         <div class="strategy-description">
           "Ứng dụng nguyên lý Markov Chain Breaker, chiến thuật này triệt tiêu hoàn toàn hành vi dự
           đoán đơn tầng của AI. Mỗi cú sút là một lần tái lập biến số, không cho phép bất kỳ lối mòn
@@ -49,15 +49,55 @@
 
       <!-- Chiến thuật 2 -->
       <div class="strategy-box">
-        <div class="strategy-title">P.P KHÔNG LẶP 4 SHOT</div>
+        <div class="strategy-title">Không lặp trong 3–4 cú gần nhất</div>
         <div class="strategy-description">
-          "Chiến thuật Multi-layer Randomization – thiết lập hàng rào biến thiên tới thời điểm 3-4
-          lượt, phá vỡ toàn bộ chuỗi hồi quy mà thống Deep Learning thủ môn cố gắng học theo. Mỗi
-          lần sút, AI như lạc vào ma trận xác suất."
+          "Chiến thuật Multi-layer Randomization – thiết lập hàng rào biến thiên tối thiểu 3–4 lượt,
+          phá vỡ toàn bộ chuỗi hồi quy mà hệ thống Deep Learning thủ môn cố gắng học theo. Mỗi lần
+          sút, AI như lạc vào ma trận xác suất."
         </div>
         <button class="start-button" @click="startGame(2)">⚡ BẮT ĐẦU</button>
       </div>
+
+      <div class="strategy-box">
+        <div class="strategy-title">Fake pattern rồi đảo ngược</div>
+        <div class="strategy-description">
+          "Sử dụng kỹ thuật Psychological Pattern Baiting, người chơi tạo một mô hình hành vi giả,
+          rồi bất ngờ đảo chiều chiến thuật. Cú đánh vào vùng nhận thức sai lệch khiến AI dính bẫy
+          'học nhầm', phản xạ sai lầm."
+        </div>
+        <button class="start-button" @click="startGame(3)">⚡ BẮT ĐẦU</button>
+      </div>
+
+      <div class="strategy-box">
+        <div class="strategy-title">Random có kiểm soát</div>
+        <div class="strategy-description">
+          "Áp dụng Controlled Entropy Injection, người chơi chủ động phân phối xác suất theo biến ẩn
+          (giờ chơi, trạng thái tâm lý). Biến động bề mặt là ngẫu nhiên, nhưng dòng chảy hành vi lại
+          tuân theo một seed kín đáo, AI không đọc nổi."
+        </div>
+        <button class="start-button" @click="startGame(4)">⚡ BẮT ĐẦU</button>
+      </div>
+
+      <div class="strategy-box">
+        <div class="strategy-title">Chơi kiểu ẩn seed</div>
+        <div class="strategy-description">
+          "Đỉnh cao của Invisible Seed Strategy, biến số nền tảng được mã hóa hoàn toàn ngoài khả
+          năng quan sát của AI (ví dụ số dư ví, số comment livestream). Hệ thống học máy không thể
+          tiếp cận seed gốc, dẫn tới sai lệch nhận thức dài hạn."
+        </div>
+        <button class="start-button" @click="startGame(5)">⚡ BẮT ĐẦU</button>
+      </div>
     </div>
+    <Dialog v-model:visible="modalGame" modal header="Nhập số vốn" :style="{ width: '25rem' }">
+      <div class="mb-4 flex items-center gap-4" style="margin-bottom: 16px">
+        <label style="margin-right: 10px" for="username" class="w-24 font-semibold">Số vốn</label>
+        <InputText v-model="soVon" id="username" class="flex-auto" autocomplete="off" />
+      </div>
+      <div class="flex justify-end gap-2" style="text-align: center">
+        <Button type="button" label="Nhập" @click="enterSoVon"></Button>
+      </div>
+    </Dialog>
+    <Toast />
   </div>
 </template>
 
@@ -65,29 +105,56 @@
 import Header from "../components/Header.vue";
 import { useRouter } from "vue-router";
 import Drawer from "primevue/drawer";
+import Dialog from "primevue/dialog";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import { useToast } from "primevue/usetoast";
 import { ref } from "vue";
 
 const router = useRouter();
+const toast = useToast();
 const visible = ref();
 const user = JSON.parse(localStorage.getItem("user")) || {};
 
 const handleHome = () => {
   visible.value = true;
 };
+const modalGame = ref();
 const logOut = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token");
   localStorage.removeItem("user");
   router.push("/login");
 };
+const soVon = ref();
+const type = ref();
+
+const enterSoVon = () => {
+  modalGame.value = false;
+  console.log("số vốn", soVon.value);
+  if (Number(soVon.value) < 200) {
+    toast.add({
+      severity: "error",
+      summary: "Vui lòng nhập lại",
+      detail: "Không khả thi cho phương pháp này. Bạn phải có từ 200 trở lên.",
+      life: 3000,
+    });
+  } else {
+    router.push("/game-strike");
+    router.push({
+      path: "/game-strike",
+      query: {
+        type: type.value,
+        von: soVon.value,
+      },
+    });
+  }
+};
+
 const startGame = (value) => {
-  router.push("/game-strike");
-  router.push({
-    path: "/game-strike",
-    query: {
-      type: value,
-    },
-  });
+  modalGame.value = true;
+  type.value = value;
+  soVon.value = "";
 };
 
 const goToHome = () => {
@@ -172,6 +239,7 @@ const goToHome = () => {
   font-weight: bold;
   position: relative;
   z-index: 2;
+  background-color: #232a34;
 }
 
 .menu-icon {

@@ -49,7 +49,11 @@
         <img :src="game.image" :alt="game.title" class="game-image" />
         <div class="title">{{ game.title }}</div>
         <p class="star">{{ game.stars }} <i class="fa-solid fa-coins" style="color: gold"></i></p>
-        <p class="soon">{{ game.status }}</p>
+        <p
+          :class="{ 'soon-active': game.status === 'SỬ DỤNG', soon: game.status === 'COMING SOON' }"
+        >
+          {{ game.status }}
+        </p>
       </div>
     </div>
   </div>
@@ -143,7 +147,7 @@ const routeGame = (title) => {
 }
 
 /* HEADER */
-.menu-header {
+/* .menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -153,6 +157,20 @@ const routeGame = (title) => {
   position: relative;
   z-index: 2;
   background-color: #232a34;
+} */
+.menu-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #232a34;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  color: white;
+  font-weight: bold;
+  z-index: 10; /* đảm bảo luôn nằm trên */
 }
 
 .menu-icon {
@@ -190,6 +208,7 @@ const routeGame = (title) => {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 20px 10px;
+  margin-top: 70px;
 }
 
 /* GAME CARD */
@@ -231,6 +250,16 @@ const routeGame = (title) => {
 
 .soon {
   background: red;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.soon-active {
+  background: green;
   color: white;
   padding: 5px 12px;
   border-radius: 20px;

@@ -36,7 +36,7 @@ import { ref } from "vue";
 import api from "./utils/axios";
 import { useRouter } from "vue-router";
 import logoImg from "./assets/images/penmaster-logo.png";
-import logoCongDong from "./assets/images/logo-congdong.jpg";
+import logoCongDong from "./assets/images/logo-congdong.png";
 
 const username = ref();
 const password = ref();
@@ -78,7 +78,7 @@ const handleLogin = async () => {
   width: 120px;
   display: block;
   position: absolute;
-  top: 82px;
+  top: 90px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -98,11 +98,13 @@ const handleLogin = async () => {
 
 .logo {
   width: 120px;
+  margin-bottom: -25px;
 }
 
 .title {
   font-size: 24px;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 .subtitle {

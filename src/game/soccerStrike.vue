@@ -35,7 +35,9 @@
     </header>
     <div class="strategy-page">
       <!-- Header -->
-
+      <button class="back-button" @click="goToHome">
+        <i class="fas fa-arrow-left"></i>
+      </button>
       <!-- Chiến thuật 1 -->
       <div class="strategy-box">
         <div class="strategy-title">Không trùng hướng liên tiếp</div>
@@ -177,6 +179,26 @@ const goToHome = () => {
   font-family: sans-serif;
   color: white;
   padding: 16px;
+}
+
+.back-button {
+  background: #333;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: #555;
 }
 
 .strategy-box {

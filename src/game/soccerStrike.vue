@@ -67,7 +67,7 @@
           rồi bất ngờ đảo chiều chiến thuật. Cú đánh vào vùng nhận thức sai lệch khiến AI dính bẫy
           'học nhầm', phản xạ sai lầm."
         </div>
-        <button class="start-button" @click="startGame(3)">⚡ BẮT ĐẦU</button>
+        <button class="start-button" @click="startGame(3)">⚡ MỞ KHÓA</button>
       </div>
 
       <div class="strategy-box">
@@ -77,7 +77,7 @@
           (giờ chơi, trạng thái tâm lý). Biến động bề mặt là ngẫu nhiên, nhưng dòng chảy hành vi lại
           tuân theo một seed kín đáo, AI không đọc nổi."
         </div>
-        <button class="start-button" @click="startGame(4)">⚡ BẮT ĐẦU</button>
+        <button class="start-button" @click="startGame(4)">⚡ MỞ KHÓA</button>
       </div>
 
       <div class="strategy-box">
@@ -87,7 +87,7 @@
           năng quan sát của AI (ví dụ số dư ví, số comment livestream). Hệ thống học máy không thể
           tiếp cận seed gốc, dẫn tới sai lệch nhận thức dài hạn."
         </div>
-        <button class="start-button" @click="startGame(5)">⚡ BẮT ĐẦU</button>
+        <button class="start-button" @click="startGame(5)">⚡ MỞ KHÓA</button>
       </div>
     </div>
     <Dialog v-model:visible="modalGame" modal header="Nhập số vốn" :style="{ width: '25rem' }">
@@ -154,6 +154,9 @@ const enterSoVon = () => {
 };
 
 const startGame = (value) => {
+  if (value >= 3) {
+    return;
+  }
   modalGame.value = true;
   type.value = value;
   soVon.value = "";
@@ -179,6 +182,7 @@ const goToHome = () => {
   font-family: sans-serif;
   color: white;
   padding: 16px;
+  margin-top: 70px;
 }
 
 .back-button {
@@ -253,15 +257,18 @@ const goToHome = () => {
 
 /* HEADER */
 .menu-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #232a34;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 10px;
   color: white;
   font-weight: bold;
-  position: relative;
-  z-index: 2;
-  background-color: #232a34;
+  z-index: 10; /* đảm bảo luôn nằm trên */
 }
 
 .menu-icon {
@@ -277,5 +284,54 @@ const goToHome = () => {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+@media (min-width: 768px) {
+  .strategy-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 32px;
+  }
+
+  .strategy-box {
+    margin-bottom: 0;
+    height: 100%;
+  }
+
+  .menu-header {
+    padding: 20px 40px;
+    font-size: 20px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .coin {
+    font-size: 18px;
+  }
+
+  .back-button {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    max-width: 50px;
+  }
+
+  .strategy-title {
+    font-size: 16px;
+  }
+
+  .strategy-description {
+    font-size: 14px;
+  }
+
+  .start-button {
+    font-size: 15px;
+    padding: 12px 24px;
+  }
 }
 </style>

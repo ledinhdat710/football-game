@@ -75,7 +75,7 @@ const handleLogin = async () => {
 }
 
 .logo-congdong {
-  width: 120px;
+  width: 160px;
   display: block;
   position: absolute;
   top: 90px;

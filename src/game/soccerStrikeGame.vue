@@ -44,26 +44,32 @@
 
       <div v-if="Number(soVon) >= 200 && Number(soVon) < 500" class="info-box">
         <div class="info-text">
-          <div>Vốn tối thiểu: 200</div>
-          <div>Cấp độ: Amateur</div>
-          <div>Sút mồi (10 lượt/5k) - Chốt lãi level 8</div>
-          <div>Sút khai thác (3 lượt/50k) - Chốt lãi khuyến khích (Bậc 5)</div>
+          <div class="fade-line" style="--i: 0">Vốn tối thiểu: 200</div>
+          <div class="fade-line" style="--i: 0">Cấp độ: Amateur</div>
+          <div class="fade-line" style="--i: 0">Sút mồi (10 lượt/5k) - Chốt lãi level 8</div>
+          <div class="fade-line" style="--i: 0">
+            Sút khai thác (3 lượt/50k) - Chốt lãi khuyến khích (Bậc 5)
+          </div>
         </div>
       </div>
       <div v-else-if="Number(soVon) >= 500 && Number(soVon) < 1000" class="info-box">
         <div class="info-text">
-          <div>Vốn tối thiểu: 500</div>
-          <div>Cấp độ: Amateur</div>
-          <div>Sút mồi (10 lượt/10k) - Chốt lãi level 8</div>
-          <div>Sút khai thác (4 lượt/100k) - Chốt lãi khuyến khích (Bậc 5)</div>
+          <div class="fade-line" style="--i: 0">Vốn tối thiểu: 500</div>
+          <div class="fade-line" style="--i: 0">Cấp độ: Amateur</div>
+          <div class="fade-line" style="--i: 0">Sút mồi (10 lượt/10k) - Chốt lãi level 8</div>
+          <div class="fade-line" style="--i: 0">
+            Sút khai thác (4 lượt/100k) - Chốt lãi khuyến khích (Bậc 5)
+          </div>
         </div>
       </div>
       <div v-else-if="Number(soVon) >= 1000" class="info-box">
         <div class="info-text">
-          <div>Vốn tối thiểu: 1000</div>
-          <div>Cấp độ: Amateur</div>
-          <div>Sút mồi (10 lượt/20k) - Chốt lãi level 8</div>
-          <div>Sút khai thác (4 200k)- Chốt lãi khuyến khích (Bậc 5)</div>
+          <div class="fade-line" style="--i: 0">Vốn tối thiểu: 1000</div>
+          <div class="fade-line" style="--i: 0">Cấp độ: Amateur</div>
+          <div class="fade-line" style="--i: 0">Sút mồi (10 lượt/20k) - Chốt lãi level 8</div>
+          <div class="fade-line" style="--i: 0">
+            Sút khai thác (4 200k)- Chốt lãi khuyến khích (Bậc 5)
+          </div>
         </div>
       </div>
     </div>
@@ -163,7 +169,7 @@ const kick = async () => {
   text-align: center;
   width: 100%;
   padding: 10px 20px;
-  margin-top: 10px;
+  margin-top: 70px;
 }
 
 .title {
@@ -181,14 +187,46 @@ const kick = async () => {
   margin: 0 auto 10px;
 }
 
-.info-box {
-  background: rgba(0, 0, 0, 0.5); /* Màu đen mờ */
+/* .info-box {
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+} */
+
+.info-box {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.info-text {
+  font-size: 14px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fade-line {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s forwards;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .icon {
@@ -196,11 +234,11 @@ const kick = async () => {
   color: #00ffff;
 }
 
-.info-text {
+/* .info-text {
   font-size: 14px;
   color: white;
   text-align: left;
-}
+} */
 
 .shoot-button {
   position: absolute;
@@ -222,13 +260,18 @@ const kick = async () => {
 
 /* ===== Header from PenMaster ===== */
 .shoot-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #232a34;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 15px;
+  padding: 15px 10px;
+  color: white;
   font-weight: bold;
-  background-color: #232a34;
+  z-index: 10; /* đảm bảo luôn nằm trên */
 }
 
 .menu-icon {
@@ -322,5 +365,109 @@ const kick = async () => {
 .goalkeeper-img {
   width: 100%;
   object-fit: cover;
+  border-radius: 12px;
+  border: 4px solid #00aaff;
+  box-shadow:
+    0 0 20px #00aaff,
+    0 0 40px #00aaff88;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+  }
+
+  .shoot-header {
+    padding: 20px 30px;
+    font-size: 18px;
+  }
+
+  .menu-icon {
+    font-size: 24px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .coin {
+    font-size: 18px;
+  }
+
+  .game-title-section {
+    padding: 20px 40px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .info-text {
+    font-size: 16px;
+  }
+
+  .goalkeeper-area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px; /* chỉnh để nút thấp hoặc cao hơn */
+    margin-bottom: 30px;
+  }
+
+  .shoot-button {
+    background: #00aaff;
+    border: 4px solid #005577;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 10px #00aaff;
+    cursor: pointer;
+    text-transform: uppercase;
+    bottom: -300px;
+  }
+
+  .goalkeeper-img {
+    border-radius: 8px;
+  }
+
+  .info-box {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-text {
+    font-size: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fade-line {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: calc(var(--i) * 0.3s);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 </style>

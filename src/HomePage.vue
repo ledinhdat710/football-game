@@ -10,9 +10,12 @@
         <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
           <i class="fas fa-home"></i> Trang chủ
         </div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Giới thiệu</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Cộng đồng</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Tài liệu BCR</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Về 68Gaming</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kiến thức Casino</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kho tài liệu</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Vòng quay may mắn</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Đào xu</div>
+        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Liên hệ Admin</div>
         <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
           <i
             style="font-size: 24px; cursor: pointer; margin-right: 10px"

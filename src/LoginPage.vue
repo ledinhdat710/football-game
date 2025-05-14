@@ -24,8 +24,13 @@
 
       <button class="login-button" @click="handleLogin">Đăng nhập</button>
 
-      <p class="hint-text">Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé!</p>
-
+      <p class="hint-text">
+        Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé! <br />Tele:@admin68gaming
+      </p>
+      <!-- <p class="version">Ver 1.2<br />Powered by 68Gaming</p> -->
+    </div>
+    <!-- <p class="version">Ver 1.2<br />Powered by 68Gaming</p> -->
+    <div class="centered-text">
       <p class="version">Ver 1.2<br />Powered by 68Gaming</p>
     </div>
   </div>
@@ -139,10 +144,23 @@ input {
   font-style: italic;
 }
 
-.version {
-  margin-top: 20px;
+.centered-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: white;
   font-size: 12px;
-  color: #cccccc;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.version {
+  /* margin-top: 20px;
+  font-size: 12px;
+  color: #cccccc; */
 }
 
 .login-button {
@@ -173,12 +191,18 @@ input {
     z-index: 2;
     border-radius: 5px;
   }
+  .centered-text {
+    bottom: -10px;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
 }
 
 @media (min-width: 768px) {
+  .centered-text {
+    bottom: 10px;
+  }
   .logo-congdong {
     width: 100px;
     display: block;

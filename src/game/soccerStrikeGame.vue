@@ -266,7 +266,7 @@ const kick = async () => {
 
 .shoot-button {
   margin-top: auto;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   align-self: center;
   background: #00aaff;
   border: 4px solid #005577;

@@ -192,7 +192,7 @@ input {
     border-radius: 5px;
   }
   .centered-text {
-    bottom: -10px;
+    bottom: -25px;
   }
 }
 

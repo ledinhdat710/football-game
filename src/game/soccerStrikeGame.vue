@@ -265,10 +265,9 @@ const kick = async () => {
 }
 
 .shoot-button {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: auto;
+  margin-bottom: 80px;
+  align-self: center;
   background: #00aaff;
   border: 4px solid #005577;
   border-radius: 50%;
@@ -401,18 +400,9 @@ const kick = async () => {
 
 @media (max-width: 380px) {
   .shoot-button {
-    background: #00aaff;
-    border: 4px solid #005577;
-    border-radius: 50%;
     width: 80px;
     height: 80px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 10px #00aaff;
-    cursor: pointer;
-    text-transform: uppercase;
-    bottom: 15px;
+    margin-bottom: 30px;
   }
 }
 
@@ -460,18 +450,9 @@ const kick = async () => {
   }
 
   .shoot-button {
-    background: #00aaff;
-    border: 4px solid #005577;
-    border-radius: 50%;
     width: 80px;
     height: 80px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 10px #00aaff;
-    cursor: pointer;
-    text-transform: uppercase;
-    bottom: 10px;
+    margin-bottom: 30px;
   }
 
   .goalkeeper-img {

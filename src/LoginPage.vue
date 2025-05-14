@@ -201,7 +201,7 @@ input {
 
 @media (min-width: 768px) {
   .centered-text {
-    bottom: 10px;
+    bottom: -10px;
   }
   .logo-congdong {
     width: 100px;

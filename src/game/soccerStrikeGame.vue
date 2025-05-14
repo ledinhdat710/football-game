@@ -401,6 +401,7 @@ const kick = async () => {
 
   .game-title-section {
     padding: 20px 40px;
+    max-width: 400px;
   }
 
   .title {
@@ -417,6 +418,7 @@ const kick = async () => {
     width: 100%;
     margin-top: 30px; /* chỉnh để nút thấp hoặc cao hơn */
     margin-bottom: 30px;
+    max-width: 400px;
   }
 
   .shoot-button {
@@ -431,7 +433,7 @@ const kick = async () => {
     box-shadow: 0 0 10px #00aaff;
     cursor: pointer;
     text-transform: uppercase;
-    bottom: -300px;
+    bottom: 10px;
   }
 
   .goalkeeper-img {

@@ -182,23 +182,25 @@ const goToHome = () => {
   font-family: sans-serif;
   color: white;
   padding: 16px;
-  margin-top: 70px;
+  margin-top: 130px;
 }
 
 .back-button {
+  position: fixed;
   background: #333;
   color: white;
   padding: 8px 16px;
   font-size: 14px;
+  top: 90px;
   border: none;
   border-radius: 8px;
-  margin-bottom: 20px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
   transition: background 0.3s ease;
+  z-index: 3;
 }
 
 .back-button:hover {
@@ -288,6 +290,7 @@ const goToHome = () => {
 
 @media (min-width: 768px) {
   .strategy-page {
+    margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;

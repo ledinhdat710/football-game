@@ -269,63 +269,15 @@ const routeGame = (title) => {
 }
 
 @media (min-width: 768px) {
-  .menu-container {
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-  }
-
-  .menu-header {
-    padding: 20px 40px;
-    font-size: 20px;
-  }
-
-  .logo {
-    font-size: 28px;
-  }
-
-  .coin {
-    font-size: 18px;
-  }
-
   .white-overlay {
-    top: 80px; /* tăng padding header trên máy */
+    top: 50px; /* tăng padding header trên máy */
   }
 
   .game-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 40px;
-    margin-top: 90px;
-  }
-
-  .game-card {
-    padding: 20px;
-    border-radius: 16px;
-  }
-
-  .game-image {
-    height: 180px;
-  }
-
-  .title {
-    font-size: 18px;
-  }
-
-  .star {
-    font-size: 16px;
-  }
-
-  .soon,
-  .soon-active {
-    font-size: 14px;
-    padding: 6px 16px;
-  }
-
-  /* Drawer content spacing on desktop */
-  .p-drawer .p-drawer-content > div {
-    font-size: 26px !important;
-    margin-bottom: 16px !important;
+    max-width: 400px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 </style>

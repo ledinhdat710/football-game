@@ -215,6 +215,15 @@ const kick = async () => {
   justify-content: center;
   align-items: center;
   text-align: center;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.3),
+    0 0 20px rgba(0, 255, 255, 0.2) inset;
+  animation: glowPulse 2s infinite alternate;
+  transition: all 0.3s ease;
+  width: 90%;
+  margin: auto;
 }
 
 .info-text {
@@ -230,6 +239,19 @@ const kick = async () => {
   transform: translateY(10px);
   animation: fadeInUp 0.5s forwards;
   animation-delay: calc(var(--i) * 0.3s);
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 0 10px rgba(0, 255, 255, 0.2),
+      0 0 20px rgba(0, 255, 255, 0.1) inset;
+  }
+  100% {
+    box-shadow:
+      0 0 20px rgba(0, 255, 255, 0.5),
+      0 0 40px rgba(0, 255, 255, 0.2) inset;
+  }
 }
 
 @keyframes fadeInUp {
@@ -361,7 +383,7 @@ const kick = async () => {
 
 /* Goalkeeper Area */
 .goalkeeper-area {
-  width: 100%;
+  width: 90%;
   position: relative;
   margin-top: 20px;
 }
@@ -413,7 +435,7 @@ const kick = async () => {
   .goalkeeper-area {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     margin-top: 5px; /* chỉnh để nút thấp hoặc cao hơn */
     max-width: 400px;
   }

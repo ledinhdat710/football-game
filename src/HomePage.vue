@@ -1,42 +1,7 @@
 <template>
   <div class="menu-container">
     <!-- HEADER -->
-    <header class="menu-header">
-      <div @click="handleHome">
-        <i style="cursor: pointer" class="fas fa-bars menu-icon"></i>
-      </div>
-
-      <Drawer v-model:visible="visible" header="Xin chào!">
-        <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
-          <i class="fas fa-home"></i> Trang chủ
-        </div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Về 68Gaming</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kiến thức Casino</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kho tài liệu</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Vòng quay may mắn</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Đào xu</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Liên hệ Admin</div>
-        <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
-          <i
-            style="font-size: 24px; cursor: pointer; margin-right: 10px"
-            class="fa-brands fa-facebook"
-          ></i>
-          <i
-            style="font-size: 24px; cursor: pointer; margin-right: 10px"
-            class="fa-brands fa-telegram"
-          ></i>
-          <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
-        </div>
-        <div @click="logOut" style="font-size: 24px; cursor: pointer">
-          <i class="fas fa-sign-out-alt"></i> Đăng Xuất
-        </div>
-      </Drawer>
-      <div class="logo">PENMASTER</div>
-      <div class="coin">
-        <span>{{ user.coin ? user.coin : 0 }}</span>
-        <i class="fa-solid fa-coins"></i>
-      </div>
-    </header>
+    <Header />
 
     <!-- LỚP PHỦ TRẮNG MỜ -->
     <div class="white-overlay"></div>
@@ -72,6 +37,7 @@ import bomxImg from "./assets/images/bomx.jpg";
 import Drawer from "primevue/drawer";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import Header from "./components/Header.vue";
 
 const visible = ref();
 const router = useRouter();

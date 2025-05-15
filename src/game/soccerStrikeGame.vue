@@ -1,41 +1,7 @@
 <template>
   <div class="container">
     <!-- Custom Header -->
-    <div class="shoot-header">
-      <div @click="handleHome">
-        <i style="cursor: pointer" class="fas fa-bars menu-icon"></i>
-      </div>
-      <Drawer v-model:visible="visible" header="Xin chào!">
-        <div @click="goToHome" style="font-size: 24px; margin-bottom: 10px; cursor: pointer">
-          <i class="fas fa-home"></i> Trang chủ
-        </div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Về 68Gaming</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kiến thức Casino</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kho tài liệu</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Vòng quay may mắn</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Đào xu</div>
-        <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Liên hệ Admin</div>
-        <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
-          <i
-            style="font-size: 24px; cursor: pointer; margin-right: 10px"
-            class="fa-brands fa-facebook"
-          ></i>
-          <i
-            style="font-size: 24px; cursor: pointer; margin-right: 10px"
-            class="fa-brands fa-telegram"
-          ></i>
-          <i style="font-size: 24px; cursor: pointer" class="fa-solid fa-phone"></i>
-        </div>
-        <div @click="logOut" style="font-size: 24px; cursor: pointer">
-          <i class="fas fa-sign-out-alt"></i> Đăng Xuất
-        </div>
-      </Drawer>
-      <div class="logo">PENMASTER</div>
-      <div class="coin">
-        <span>{{ user.coin }}</span>
-        <i class="fa-solid fa-coins"></i>
-      </div>
-    </div>
+    <Header />
 
     <!-- Game Section -->
     <!-- Game Title Section -->
@@ -105,6 +71,7 @@ import center from "../assets/images/center.png";
 import { useRouter, useRoute } from "vue-router";
 import Drawer from "primevue/drawer";
 import { useToast } from "primevue/usetoast";
+import Header from "../components/Header.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -176,6 +143,17 @@ const kick = async () => {
   flex-direction: column;
   align-items: center;
 }
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(1px);
+  background-color: rgba(35, 42, 52, 0.4); /* Tùy chỉnh độ tối/mờ */
+  z-index: 0;
+}
 .back-button {
   position: fixed;
   background: #333;
@@ -183,7 +161,7 @@ const kick = async () => {
   padding: 8px 16px;
   font-size: 14px;
   top: 70px;
-  left: 10px;
+  left: 5px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -205,6 +183,7 @@ const kick = async () => {
   padding: 10px 20px;
   margin-top: 70px;
   margin-bottom: 40px;
+  z-index: 1;
 }
 
 .title {
@@ -217,6 +196,7 @@ const kick = async () => {
     0 0 10px #ffd700,
     0 0 20px #ffd700; /* nhiều lớp bóng tạo glow */
   transition: transform 0.3s;
+  z-index: 1;
 }
 
 .title-bar {
@@ -279,6 +259,7 @@ const kick = async () => {
   box-shadow: 0 0 10px #00aaff;
   cursor: pointer;
   text-transform: uppercase;
+  z-index: 1;
 }
 
 /* ===== Header from PenMaster ===== */
@@ -415,6 +396,7 @@ const kick = async () => {
 
   .back-button {
     top: 90px;
+    left: 25px;
   }
 
   .menu-icon {

@@ -42,10 +42,14 @@
 <script setup>
 import { useRouter } from "vue-router";
 import Drawer from "primevue/drawer";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useToast } from "primevue/usetoast";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = ref();
+user.value = JSON.parse(localStorage.getItem("user"));
+
+onMounted(async () => {});
+
 const router = useRouter();
 const toast = useToast();
 const visible = ref(false);
@@ -70,6 +74,11 @@ const daoXu = () => {
     life: 3000,
   });
 };
+const updateCoin = () => {
+  user.value = JSON.parse(localStorage.getItem("user"));
+};
+
+defineExpose({ updateCoin });
 </script>
 
 <style scoped>

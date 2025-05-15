@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- Custom Header -->
-    <Header />
+    <Header ref="headerRef" />
 
     <!-- Game Section -->
     <!-- Game Title Section -->
@@ -92,6 +92,8 @@ onMounted(async () => {
 
 const user = JSON.parse(localStorage.getItem("user")) || {};
 
+const headerRef = ref(null);
+
 const goToHome = () => {
   router.push("/home");
 };
@@ -120,8 +122,25 @@ const logOut = () => {
 };
 
 const kick = async () => {
-  const res = await api.get(`/admins/kick/${route.query.type}`);
-  if (!res) {
+  try {
+    const res = await api.get(`/admins/kick/${route.query.type}`);
+    if (!res) {
+      toast.add({
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lỗi hệ thống, vui lòng thử lại.",
+        life: 3000,
+      });
+    }
+    valueKick.value = res.data.value;
+    if (res) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      user.coin = res.data.new_coin;
+      localStorage.removeItem("user");
+      localStorage.setItem("user", JSON.stringify(user));
+      headerRef.value.updateCoin();
+    }
+  } catch (e) {
     toast.add({
       severity: "error",
       summary: "Lỗi",
@@ -129,7 +148,6 @@ const kick = async () => {
       life: 3000,
     });
   }
-  valueKick.value = res.data.value;
 };
 </script>
 

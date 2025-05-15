@@ -210,7 +210,7 @@ const kick = async () => {
 .info-box {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;

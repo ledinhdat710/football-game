@@ -13,7 +13,9 @@
       <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kho tài liệu</div>
       <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Vòng quay may mắn</div>
       <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer" @click="daoXu">Đào xu</div>
-      <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Kích xu</div>
+      <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer" @click="kichXu">
+        Kích xu
+      </div>
       <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Liên hệ Admin</div>
       <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
         <i
@@ -35,6 +37,15 @@
       <span>{{ user.coin ? user.coin : 0 }}</span>
       <i class="fa-solid fa-coins"></i>
     </div>
+    <Dialog v-model:visible="modalCode" modal header="Nhập mã code" :style="{ width: '25rem' }">
+      <div class="mb-4 flex items-center gap-4" style="margin-bottom: 16px">
+        <label style="margin-right: 10px" for="macode" class="w-24 font-semibold">Mã code</label>
+        <InputText v-model="maCode" id="macode" class="flex-auto" autocomplete="off" />
+      </div>
+      <div class="flex justify-end gap-2" style="text-align: center">
+        <Button type="button" label="Nhập" @click="enterMaCode"></Button>
+      </div>
+    </Dialog>
     <Toast />
   </header>
 </template>
@@ -44,6 +55,10 @@ import { useRouter } from "vue-router";
 import Drawer from "primevue/drawer";
 import { ref, onMounted } from "vue";
 import { useToast } from "primevue/usetoast";
+import Dialog from "primevue/dialog";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import api from "../utils/axios";
 
 const user = ref();
 user.value = JSON.parse(localStorage.getItem("user"));
@@ -53,6 +68,35 @@ onMounted(async () => {});
 const router = useRouter();
 const toast = useToast();
 const visible = ref(false);
+const modalCode = ref(false);
+const maCode = ref();
+const enterMaCode = async () => {
+  const payload = {
+    code: maCode.value,
+  };
+  try {
+    const res = await api.post(`/admins/use-deposit`, payload);
+    if (res) {
+      const dataUser = await api.get(`/auth/profile`);
+      // console.log(dataUser)
+      localStorage.removeItem("user");
+      localStorage.setItem("user", JSON.stringify(dataUser.data));
+      user.value = JSON.parse(localStorage.getItem("user"));
+      modalCode.value = false;
+    }
+  } catch (e) {
+    toast.add({
+      severity: "error",
+      summary: "Lỗi",
+      detail: "Không tìm thấy mã code.",
+      life: 3000,
+    });
+  }
+};
+const kichXu = () => {
+  visible.value = false;
+  modalCode.value = true;
+};
 const emit = defineEmits(["goToHome"]);
 const goToHome = () => {
   router.push("/home");

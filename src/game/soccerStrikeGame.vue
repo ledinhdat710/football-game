@@ -286,7 +286,7 @@ const kick = async () => {
 
 .shoot-button {
   margin-top: auto;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
   align-self: center;
   background: #00aaff;
   border: 4px solid #005577;
@@ -419,11 +419,11 @@ const kick = async () => {
     box-shadow 0.3s ease;
 }
 
-@media (max-width: 380px) {
+@media (max-width: 390px) {
   .shoot-button {
     width: 80px;
     height: 80px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 }
 
@@ -432,6 +432,10 @@ const kick = async () => {
     margin: 0 auto;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+  }
+
+  .container::before {
+    bottom: -80px;
   }
 
   .back-button {
@@ -456,6 +460,7 @@ const kick = async () => {
     width: 90%;
     margin-top: 5px; /* chỉnh để nút thấp hoặc cao hơn */
     max-width: 400px;
+    margin-bottom: 10px;
   }
 
   .shoot-button {

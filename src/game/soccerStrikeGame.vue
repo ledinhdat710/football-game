@@ -161,7 +161,7 @@ const kick = async () => {
   padding: 8px 16px;
   font-size: 14px;
   top: 70px;
-  left: 5px;
+  left: 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -396,19 +396,6 @@ const kick = async () => {
 
   .back-button {
     top: 90px;
-    left: 25px;
-  }
-
-  .menu-icon {
-    font-size: 24px;
-  }
-
-  .logo {
-    font-size: 24px;
-  }
-
-  .coin {
-    font-size: 18px;
   }
 
   .game-title-section {

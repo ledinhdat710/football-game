@@ -104,9 +104,9 @@ const daoXu = () => {
 }
 
 @media (min-width: 768px) {
-  .menu-header {
+  /* .menu-header {
     padding: 20px 40px;
     font-size: 20px;
-  }
+  } */
 }
 </style>

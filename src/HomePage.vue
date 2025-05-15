@@ -127,35 +127,6 @@ const routeGame = (title) => {
   z-index: 2;
   background-color: #232a34;
 } */
-.menu-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #232a34;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 10px;
-  color: white;
-  font-weight: bold;
-  z-index: 10; /* đảm bảo luôn nằm trên */
-}
-
-.menu-icon {
-  font-size: 22px;
-}
-
-.logo {
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.coin {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
 
 /* LỚP PHỦ */
 .white-overlay {

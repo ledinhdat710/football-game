@@ -225,37 +225,6 @@ const goToHome = () => {
   box-shadow: 0 0 15px rgba(0, 230, 118, 0.8);
 }
 
-/* HEADER */
-.menu-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #232a34;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 10px;
-  color: white;
-  font-weight: bold;
-  z-index: 10; /* đảm bảo luôn nằm trên */
-}
-
-.menu-icon {
-  font-size: 22px;
-}
-
-.logo {
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.coin {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
 @media (min-width: 768px) {
   .strategy-page {
     margin-top: 100px;
@@ -268,19 +237,6 @@ const goToHome = () => {
   .strategy-box {
     margin-bottom: 0;
     height: 100%;
-  }
-
-  .menu-header {
-    padding: 20px 40px;
-    font-size: 20px;
-  }
-
-  .logo {
-    font-size: 26px;
-  }
-
-  .coin {
-    font-size: 18px;
   }
 
   .back-button {

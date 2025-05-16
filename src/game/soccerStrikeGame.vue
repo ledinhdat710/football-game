@@ -52,6 +52,9 @@
       <img v-show="valueKick === 1" :src="left_kick" alt="Goalkeeper" class="goalkeeper-img" />
       <img v-show="valueKick === 2" :src="center_kick" alt="Goalkeeper" class="goalkeeper-img" />
       <img v-show="valueKick === 3" :src="right_kick" alt="Goalkeeper" class="goalkeeper-img" />
+      <div v-if="showText && valueKick === 1" class="temp-text">Trái</div>
+      <div v-else-if="showText && valueKick === 2" class="temp-text">Giữa</div>
+      <div v-else-if="showText && valueKick === 3" class="temp-text">Phải</div>
     </div>
 
     <button @click="kick" class="shoot-button">SÚT</button>
@@ -79,6 +82,7 @@ const toast = useToast();
 const valueKick = ref(0);
 
 const visible = ref();
+const showText = ref(false);
 
 const handleHome = () => {
   visible.value = true;
@@ -140,6 +144,10 @@ const kick = async () => {
       localStorage.setItem("user", JSON.stringify(user));
       headerRef.value.updateCoin();
     }
+    showText.value = true;
+    setTimeout(() => {
+      showText.value = false;
+    }, 1000);
   } catch (e) {
     toast.add({
       severity: "error",
@@ -419,6 +427,32 @@ const kick = async () => {
     box-shadow 0.3s ease;
 }
 
+.temp-text {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
 @media (max-width: 390px) {
   .shoot-button {
     width: 80px;
@@ -435,7 +469,7 @@ const kick = async () => {
   }
 
   .container::before {
-    bottom: -80px;
+    bottom: -115px;
   }
 
   .back-button {

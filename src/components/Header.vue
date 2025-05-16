@@ -16,7 +16,9 @@
       <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer" @click="kichXu">
         Kích xu
       </div>
-      <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer">Liên hệ Admin</div>
+      <div style="font-size: 24px; margin-bottom: 10px; cursor: pointer" @click="contactAdmin">
+        Liên hệ Admin
+      </div>
       <div style="font-size: 24px; margin-bottom: 80px; cursor: pointer">
         <i
           style="font-size: 24px; cursor: pointer; margin-right: 10px"
@@ -35,7 +37,7 @@
     <div class="logo">PENMASTER</div>
     <div class="coin">
       <span>{{ user.coin ? user.coin : 0 }}</span>
-      <i class="fa-solid fa-coins"></i>
+      <i style="color: gold" class="fa-solid fa-coins"></i>
     </div>
     <Dialog v-model:visible="modalCode" modal header="Nhập mã code" :style="{ width: '25rem' }">
       <div class="mb-4 flex items-center gap-4" style="margin-bottom: 16px">
@@ -46,7 +48,8 @@
         <Button type="button" label="Nhập" @click="enterMaCode"></Button>
       </div>
     </Dialog>
-    <Toast />
+    <Toast position="top-right" group="tr" />
+    <Toast position="center" group="center" />
   </header>
 </template>
 
@@ -90,6 +93,7 @@ const enterMaCode = async () => {
       summary: "Lỗi",
       detail: "Không tìm thấy mã code.",
       life: 3000,
+      group: "tr",
     });
   }
 };
@@ -116,6 +120,16 @@ const daoXu = () => {
     summary: "",
     detail: " Tính năng đang phát triển, sẽ thông báo đến bạn khi hoàn thiện.",
     life: 3000,
+    group: "tr",
+  });
+};
+const contactAdmin = () => {
+  toast.add({
+    severity: "info",
+    summary: "Info",
+    detail: "Mọi hỗ trợ, bạn nhắn về Tele: @admin68gaming\n Cảm ơn!",
+    life: 3000,
+    group: "center",
   });
 };
 const updateCoin = () => {

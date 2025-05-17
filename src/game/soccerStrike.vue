@@ -57,6 +57,15 @@
         </div>
         <button class="start-button" @click="startGame(5)">⚡ MỞ KHÓA</button>
       </div>
+      <div class="strategy-box">
+        <div class="strategy-title">Lệch hướng tần suất</div>
+        <div class="strategy-description">
+          "Chiến thuật Dynamic Bias Rotation dựa trên việc chủ động thiên lệch xác suất theo chu kỳ.
+          Sau mỗi vòng, hướng ưu tiên được đảo ngược, tạo ra nhiễu cao với AI thống kê mà vẫn kiểm
+          soát được hành vi đá."
+        </div>
+        <button class="start-button" @click="startGame(6)">⚡ MỞ KHÓA</button>
+      </div>
     </div>
     <Dialog v-model:visible="modalGame" modal header="Nhập số vốn" :style="{ width: '25rem' }">
       <div class="mb-4 flex items-center gap-4" style="margin-bottom: 16px">

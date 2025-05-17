@@ -25,7 +25,7 @@
       <button class="login-button" @click="handleLogin">Đăng nhập</button>
 
       <p class="hint-text">
-        Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé! <br />Tele:@admin68gaming
+        Bạn chưa có tài khoản? <br />Liên hệ Admin để nhận nhé! <br />Tele: @baloc_68 
       </p>
       <!-- <p class="version">Ver 1.2<br />Powered by 68Gaming</p> -->
     </div>

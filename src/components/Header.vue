@@ -127,7 +127,7 @@ const contactAdmin = () => {
   toast.add({
     severity: "info",
     summary: "Info",
-    detail: "Mọi hỗ trợ, bạn nhắn về Tele: @admin68gaming\n Cảm ơn!",
+    detail: "Mọi hỗ trợ, bạn nhắn về Tele: @baloc_68\n Cảm ơn!",
     life: 3000,
     group: "center",
   });

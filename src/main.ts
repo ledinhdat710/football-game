@@ -15,6 +15,9 @@ import LoginPage from './LoginPage.vue'
 import HomePage from './HomePage.vue'
 import GameSoccerStrike from './game/soccerStrike.vue'
 import GameSoccerStrikePlay from './game/soccerStrikeGame.vue'
+import GameNoHuPlay from './game/noHuGame.vue'
+import GameNoHu from './game/noHu.vue'
+import PGSanhGame from './game/pg/pg.vue'
 
 // 👉 Import axios nếu muốn xài global (tùy chọn)
 // import api from './utils/axios'
@@ -25,6 +28,9 @@ const routes = [
   { path: '/home', component: HomePage },
   { path: '/soccer-strike', component: GameSoccerStrike },
   { path: '/game-strike', component: GameSoccerStrikePlay },
+  { path: '/no-hu', component: GameNoHu },
+  { path: '/no-hu-pg', component: PGSanhGame },
+  { path: '/no-hu-game', component: GameNoHuPlay },
 ]
 
 const router = createRouter({

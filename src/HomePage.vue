@@ -29,6 +29,7 @@
 
 <script setup>
 import soccerStrikeImg from "./assets/images/soccer-strike.jpg";
+import noHuImg from "./assets/images/no_hu.jpg";
 import dapTrauImg from "./assets/images/dap-trau.jpg";
 import phaGonImg from "./assets/images/pha-gon.jpg";
 import dapChuotImg from "./assets/images/dap-chuot.jpg";
@@ -45,6 +46,12 @@ const games = [
   {
     title: "Tiền đạo Đá bóng",
     image: soccerStrikeImg,
+    stars: 2,
+    status: "SỬ DỤNG",
+  },
+  {
+    title: "X8TK Pro",
+    image: noHuImg,
     stars: 2,
     status: "SỬ DỤNG",
   },
@@ -100,6 +107,8 @@ const handleHome = () => {
 const routeGame = (title) => {
   if (title === "Tiền đạo Đá bóng") {
     router.push("/soccer-strike");
+  } else if (title === "X8TK Pro") {
+    router.push("/no-hu");
   }
 };
 </script>
